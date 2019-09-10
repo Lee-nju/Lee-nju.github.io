@@ -55,12 +55,12 @@
   };
 </script>
 
-  <meta name="description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
+  <meta name="description" content="为什么是再版？  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++实现小根堆(再版)+Graphviz和DOT语言绘图">
 <meta property="og:url" content="http://yoursite.com/2019/09/09/heap/index.html">
 <meta property="og:site_name" content="小李没有刀">
-<meta property="og:description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
+<meta property="og:description" content="为什么是再版？  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，所">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/2.png">
@@ -78,10 +78,10 @@
 <meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/14.png">
 <meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/15.png">
 <meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/16.png">
-<meta property="og:updated_time" content="2019-09-10T13:52:39.858Z">
+<meta property="og:updated_time" content="2019-09-10T14:00:46.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++实现小根堆(再版)+Graphviz和DOT语言绘图">
-<meta name="twitter:description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
+<meta name="twitter:description" content="为什么是再版？  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，所">
 <meta name="twitter:image" content="http://pxlwew7ij.bkt.clouddn.com/1.png">
   <link rel="canonical" href="http://yoursite.com/2019/09/09/heap/">
 
@@ -295,7 +295,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-10 21:52:39" itemprop="dateModified" datetime="2019-09-10T21:52:39+08:00">2019-09-10</time>
+                <time title="Modified: 2019-09-10 22:00:46" itemprop="dateModified" datetime="2019-09-10T22:00:46+08:00">2019-09-10</time>
               </span>
             
           
@@ -311,8 +311,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="为什么是再版？"><a href="#为什么是再版？" class="headerlink" title="为什么是再版？"></a>为什么是再版？</h2><hr>
-<p>  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在<a href="https://www.draw.io" target="_blank" rel="noopener">draw.io</a>上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行<code>dot -Tpng heap.dot -o heap.png</code>直接生成来的快。生搬有点尬，所以想重构一下，主要是改两点：</p>
+        <h2 id="为什么是再版？"><a href="#为什么是再版？" class="headerlink" title="为什么是再版？"></a>为什么是再版？</h2><hr><p>  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在<a href="https://www.draw.io" target="_blank" rel="noopener">draw.io</a>上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行<code>dot -Tpng heap.dot -o heap.png</code>直接生成来的快。生搬有点尬，所以想重构一下，主要是改两点：</p><a id="more"></a>
+
 <ol>
 <li>换成C++实现小根堆</li>
 <li>使用Graphviz和DOT语言绘图</li>
@@ -393,6 +393,10 @@
 
             <div class="post-nav-prev post-nav-item">
               
+                <a href="/2019/09/10/codeRunner/" rel="prev" title="把CodeRunner3编译latex默认的pdflatex改为xelatex">
+                  把CodeRunner3编译latex默认的pdflatex改为xelatex <i class="fa fa-chevron-right"></i>
+                </a>
+              
             </div>
           </div>
         
@@ -458,7 +462,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
