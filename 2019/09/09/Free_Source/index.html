@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="本文用于区分计算机中几个常见的名词   一、GNU/Linux VS Linux关于GNU/Linux常见问答 1. GNU是什么？—— GNU是一个操作系统GNU其实是一个自由软件操作系统——它尊重其使用者的自由。GNU操作系统包括GNU软件包（专门由GNU工程发布的程序）和由第三方发布的自由软件。GNU的开发使你能够使用电脑而无需安装可能会侵害你自由的软件。 2. 什么是Linux？Linux">
+<meta name="keywords" content="GNU,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GNU&#x2F;Linux VS Linux &amp; Free VS Open Source">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/Free_Source/index.html">
+<meta property="og:site_name" content="小李没有刀">
+<meta property="og:description" content="本文用于区分计算机中几个常见的名词   一、GNU/Linux VS Linux关于GNU/Linux常见问答 1. GNU是什么？—— GNU是一个操作系统GNU其实是一个自由软件操作系统——它尊重其使用者的自由。GNU操作系统包括GNU软件包（专门由GNU工程发布的程序）和由第三方发布的自由软件。GNU的开发使你能够使用电脑而无需安装可能会侵害你自由的软件。 2. 什么是Linux？Linux">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/heckert_gnu.transp.small.png">
+<meta property="og:updated_time" content="2019-09-10T12:57:15.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GNU&#x2F;Linux VS Linux &amp; Free VS Open Source">
+<meta name="twitter:description" content="本文用于区分计算机中几个常见的名词   一、GNU/Linux VS Linux关于GNU/Linux常见问答 1. GNU是什么？—— GNU是一个操作系统GNU其实是一个自由软件操作系统——它尊重其使用者的自由。GNU操作系统包括GNU软件包（专门由GNU工程发布的程序）和由第三方发布的自由软件。GNU的开发使你能够使用电脑而无需安装可能会侵害你自由的软件。 2. 什么是Linux？Linux">
+<meta name="twitter:image" content="http://pxlwew7ij.bkt.clouddn.com/heckert_gnu.transp.small.png">
+  <link rel="canonical" href="http://yoursite.com/2019/09/09/Free_Source/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>GNU/Linux VS Linux & Free VS Open Source | 小李没有刀</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小李没有刀</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-schedule">
+      
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Schedule</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/Free_Source/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lee">
+      <meta itemprop="description" content="Run faster!!!">
+      <meta itemprop="image" content="http://pxlwew7ij.bkt.clouddn.com/IMG_20190325_001600.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小李没有刀">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">GNU/Linux VS Linux & Free VS Open Source
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-09 08:36:23" itemprop="dateCreated datePublished" datetime="2019-09-09T08:36:23+08:00">2019-09-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-10 20:57:15" itemprop="dateModified" datetime="2019-09-10T20:57:15+08:00">2019-09-10</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>本文用于区分计算机中几个常见的名词</strong></p>
+<hr>
+<p><img src="http://pxlwew7ij.bkt.clouddn.com/heckert_gnu.transp.small.png" alt></p>
+<h2 id="一、GNU-Linux-VS-Linux"><a href="#一、GNU-Linux-VS-Linux" class="headerlink" title="一、GNU/Linux VS Linux"></a>一、GNU/Linux VS Linux</h2><p><a href="https://www.gnu.org/gnu/gnu-linux-faq.html" target="_blank" rel="noopener">关于GNU/Linux常见问答</a></p>
+<h3 id="1-GNU是什么？——-GNU是一个操作系统"><a href="#1-GNU是什么？——-GNU是一个操作系统" class="headerlink" title="1. GNU是什么？—— GNU是一个操作系统"></a>1. GNU是什么？—— <a href="https://www.gnu.org/" target="_blank" rel="noopener">GNU是一个操作系统</a></h3><p>GNU其实是一个<a href="https://www.gnu.org/philosophy/free-sw.html" target="_blank" rel="noopener">自由软件</a>操作系统——它尊重其使用者的自由。GNU操作系统包括GNU软件包（专门由GNU工程发布的程序）和由第三方发布的自由软件。GNU的开发使你能够使用电脑而无需安装可能会侵害你自由的软件。</p>
+<h3 id="2-什么是Linux？"><a href="#2-什么是Linux？" class="headerlink" title="2. 什么是Linux？"></a>2. 什么是Linux？</h3><p>Linux，通常被认为是一套操作系统，实际上它是一系列 <strong><em>Linux 内核</em></strong> 基础上开发的操作系统的总称。日常所见比较多的 Ubuntu、企业常用的 centos 其实是用的 Linux 内核的系统，GNU/Linux也是。</p>
+<h3 id="3-GNU-Linux？"><a href="#3-GNU-Linux？" class="headerlink" title="3. GNU/Linux？"></a>3. GNU/Linux？</h3><p>GNU是一个类Unix操作系统。它是由多个应用程序、系统库、开发工具乃至游戏构成的程序集合。GNU的开发始于1984年1月，称为GNU工程。GNU的许多程序在GNU工程下发布；我们称之为<a href="https://www.gnu.org/software/" target="_blank" rel="noopener">GNU软件包</a>。</p>
+<p>“GNU”这个名字是“GNU’s Not Unix”的递归首字母缩写词。<a href="https://www.gnu.org/pronunciation/pronunciation.html" target="_blank" rel="noopener">“GNU”的发音为g’noo</a><br>，只有一个音节，发音很像“grew”，但需要把其中的r音替换为n音。</p>
+<p>类Unix操作系统中用于资源分配和硬件管理的程序称为“内核”。GNU所用的典型内核是Linux。该组合叫做GNU/Linux操作系统。GNU/Linux为几百万用户所使用，然而许多人错误地称之为<strong>“Linux”</strong>。</p>
+<h2 id="二、Free-VS-Open-Source"><a href="#二、Free-VS-Open-Source" class="headerlink" title="二、Free VS Open Source"></a>二、Free VS Open Source</h2><h3 id="自由软件视频：自由软件的发起者Richard-Stallman的TED演讲。"><a href="#自由软件视频：自由软件的发起者Richard-Stallman的TED演讲。" class="headerlink" title="自由软件视频：自由软件的发起者Richard Stallman的TED演讲。"></a><a href="https://www.fsf.org/blogs/rms/20140407-geneva-tedx-talk-free-software-free-society" target="_blank" rel="noopener">自由软件视频</a>：自由软件的发起者<a href="https://en.wikipedia.org/wiki/Richard_Stallman" target="_blank" rel="noopener">Richard Stallman</a>的TED演讲。</h3><h3 id="两篇文章就能回答这个问题。"><a href="#两篇文章就能回答这个问题。" class="headerlink" title="两篇文章就能回答这个问题。"></a>两篇文章就能回答这个问题。</h3><h4 id="1-为什么“自由软件”好于“开源”"><a href="#1-为什么“自由软件”好于“开源”" class="headerlink" title="1. 为什么“自由软件”好于“开源”"></a>1. <a href="https://www.gnu.org/philosophy/free-software-for-freedom.zh-cn.html" target="_blank" rel="noopener">为什么“自由软件”好于“开源”</a></h4><blockquote>
+<p>虽然自由软件不以自由命名，也能给你同样的自由，但是使用其他的名字会造成重大的不同：不同的词汇<em>传达不同的理念</em>。</p>
+</blockquote>
+<blockquote>
+<p>1998年，自由软件社区有些人开始使用<a href="https://opensource.org/" target="_blank" rel="noopener">“开源软件”</a>来替代<a href="https://www.gnu.org/philosophy/free-sw.html" target="_blank" rel="noopener">“自由软件”</a>来描述他们的所作所为。“开源”一词迅速关联到不同的方法、不同的哲学、不同的价值，甚至是接受何种许可证的不同标准。现在，自由软件运动与开源运动，已经是<a href="https://www.gnu.org/philosophy/free-software-for-freedom.zh-cn.html#relationship" target="_blank" rel="noopener">各自独立的运动</a>，它们有不同的观点和目标，虽然两者还能一起从事实际的项目。</p>
+</blockquote>
+<blockquote>
+<p>两个运动的根本差别在于它们的价值、它们看待世界的方法。就开源运动而言，软件是否应该开源是一个实际的问题，而不是道德诉求。正如有人指出，“开源是一种开发的方法；自由软件是一场社会运动。”对开源运动来说，非自由软件不是最佳答案。对自由软件运动来说，非自由软件是社会问题，而自由软件是正解。</p>
+</blockquote>
+<h4 id="2-为什么开源错失了自由软件的重点"><a href="#2-为什么开源错失了自由软件的重点" class="headerlink" title="2. 为什么开源错失了自由软件的重点"></a>2. <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html" target="_blank" rel="noopener">为什么开源错失了自由软件的重点</a></h4><blockquote>
+<p>“自由软件”和“开源”基本上指的是同一范围的程序。然而，出于不同的价值观，它们对这些程序的看法大相径庭。自由软件运动为用户的计算自由而战斗；这是一个为自由和公正而战的运动。相反，开源理念重视的是实用优势而不是原则利害。我们因此不赞同开源运动，也不使用开源这个词。</p>
+</blockquote>
+<p><strong>自由软件意味着使用者有运行、复制、发布、研究、修改和改进该软件的自由。</strong><br>更精确地说，自由软件赋予软件使用者四项基本自由：</p>
+<ul>
+<li>不论目的为何，有运行该软件的自由（自由之零）。</li>
+<li>有研究该软件如何工作以及按需改写该软件的自由（自由之一）。取得该软件源代码为达成此目的之前提。</li>
+<li>有重新发布拷贝的自由，这样你可以借此来敦亲睦邻（自由之二）。</li>
+<li>有向公众发布改进版软件的自由（自由之三），这样整个社群都可因此受惠。取得该软件源码为达成此目的之前提。</li>
+</ul>
+<h2 id="三、黑客和骇客"><a href="#三、黑客和骇客" class="headerlink" title="三、黑客和骇客"></a>三、黑客和骇客</h2><p><strong>作为计算机人士，一些基本概念还是要懂的！</strong>所以额外补充一组词：黑客 VS 骇客</p>
+<h4 id="1-黑客"><a href="#1-黑客" class="headerlink" title="1. 黑客"></a>1. 黑客</h4><blockquote>
+<p>他们其实不是江洋大盗，而是真正的侠客。他们专门破解一些软件给普通人免费使用，他们道德高尚，是一群真正热爱计算机、热爱编程的人，他们反对收费软件。Richard Stallman就是黑客，虽然他是美国工程院院士，但是每天都受到监督，因为美国商业人士总是告他。</p>
+</blockquote>
+<h4 id="2-骇客"><a href="#2-骇客" class="headerlink" title="2. 骇客"></a>2. 骇客</h4><blockquote>
+<p>他们才是真正的江洋大盗，是以盗取别人信息，破坏网络安全，为此赚取利益的一些人。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/GNU/" rel="tag"># GNU</a>
+            
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/09/heap/" rel="prev" title="C++实现小根堆(再版)+Graphviz和DOT语言绘图">
+                  C++实现小根堆(再版)+Graphviz和DOT语言绘图 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、GNU-Linux-VS-Linux"><span class="nav-number">1.</span> <span class="nav-text">一、GNU/Linux VS Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-GNU是什么？——-GNU是一个操作系统"><span class="nav-number">1.1.</span> <span class="nav-text">1. GNU是什么？—— GNU是一个操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是Linux？"><span class="nav-number">1.2.</span> <span class="nav-text">2. 什么是Linux？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-GNU-Linux？"><span class="nav-number">1.3.</span> <span class="nav-text">3. GNU/Linux？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Free-VS-Open-Source"><span class="nav-number">2.</span> <span class="nav-text">二、Free VS Open Source</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自由软件视频：自由软件的发起者Richard-Stallman的TED演讲。"><span class="nav-number">2.1.</span> <span class="nav-text">自由软件视频：自由软件的发起者Richard Stallman的TED演讲。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两篇文章就能回答这个问题。"><span class="nav-number">2.2.</span> <span class="nav-text">两篇文章就能回答这个问题。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-为什么“自由软件”好于“开源”"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 为什么“自由软件”好于“开源”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-为什么开源错失了自由软件的重点"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 为什么开源错失了自由软件的重点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、黑客和骇客"><span class="nav-number">3.</span> <span class="nav-text">三、黑客和骇客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-黑客"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. 黑客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-骇客"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 骇客</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="http://pxlwew7ij.bkt.clouddn.com/IMG_20190325_001600.jpg"
+      alt="Lee">
+  <p class="site-author-name" itemprop="name">Lee</p>
+  <div class="site-description" itemprop="description">Run faster!!!</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lee</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>

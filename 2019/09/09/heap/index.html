@@ -55,31 +55,49 @@
   };
 </script>
 
-  <meta name="description" content="Run faster!!!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小李没有刀">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++实现小根堆(再版)+Graphviz和DOT语言绘图">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/heap/index.html">
 <meta property="og:site_name" content="小李没有刀">
-<meta property="og:description" content="Run faster!!!">
+<meta property="og:description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-c910bff995414240.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-f539187aca30a93f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-a9fa3c7f928d6590.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-d9ede3dcf5cf1655.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-f798b2adadc7f788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-34dfdd90596e038f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-294251a931437497.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-286a3c4454ac96d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-95b1b1b846fcbdc5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-06c91ad65c656d29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-b780d9f41eb8b174.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-a35b9eb4674fdcfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-893b9bc16be6bbfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-ed12eef1cb540f2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-7a82e90092685085.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15919903-4c860d54fa8f1b67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-10T08:45:14.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小李没有刀">
-<meta name="twitter:description" content="Run faster!!!">
-  <link rel="canonical" href="http://yoursite.com/">
+<meta name="twitter:title" content="C++实现小根堆(再版)+Graphviz和DOT语言绘图">
+<meta name="twitter:description" content="为什么是再版？   因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在draw.io上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行dot -Tpng heap.dot -o heap.png直接生成来的快。生搬有点尬，">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/15919903-c910bff995414240.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  <link rel="canonical" href="http://yoursite.com/2019/09/09/heap/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>小李没有刀</title>
+  <title>C++实现小根堆(再版)+Graphviz和DOT语言绘图 | 小李没有刀</title>
   
 
 
@@ -231,12 +249,13 @@
 
           <div id="content" class="content">
             
+
   <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block home">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/heap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,9 +268,8 @@
       <meta itemprop="name" content="小李没有刀">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/09/heap/" class="post-title-link" itemprop="url">C++实现小根堆(再版)+Graphviz和DOT语言绘图</a>
+        <h1 class="post-title" itemprop="name headline">C++实现小根堆(再版)+Graphviz和DOT语言绘图
+
           
         </h1>
 
@@ -293,7 +311,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="为什么是再版？"><a href="#为什么是再版？" class="headerlink" title="为什么是再版？"></a>为什么是再版？</h2><hr>
+        <h2 id="为什么是再版？"><a href="#为什么是再版？" class="headerlink" title="为什么是再版？"></a>为什么是再版？</h2><hr>
 <p>  因为觉得CSDN的版面不好看、广告太多，所以来到简书。想把之前的内容搬过来，虽然不多，但还是放在一个地方的好。最近看到了一个程序员画图的好东西——使用Graphviz和DOT语言绘图，瞬间觉得自己以前在<a href="https://www.draw.io" target="_blank" rel="noopener">draw.io</a>上搞了半天整个图太low了，不如直接dot文件描述图是怎么样的，然后终端一行<code>dot -Tpng heap.dot -o heap.png</code>直接生成来的快。生搬有点尬，所以想重构一下，主要是改两点：</p>
 <ol>
 <li>换成C++实现小根堆</li>
@@ -350,142 +368,43 @@
 </li>
 </ol>
 
-        
-      
     </div>
 
     
     
     
+        
+      
+
       <footer class="post-footer">
-          <div class="post-eof"></div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/09/Free_Source/" rel="next" title="GNU/Linux VS Linux & Free VS Open Source">
+                  <i class="fa fa-chevron-left"></i> GNU/Linux VS Linux & Free VS Open Source
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/Free_Source/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lee">
-      <meta itemprop="description" content="Run faster!!!">
-      <meta itemprop="image" content="http://pxlwew7ij.bkt.clouddn.com/IMG_20190325_001600.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小李没有刀">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/09/Free_Source/" class="post-title-link" itemprop="url">GNU/Linux VS Linux & Free VS Open Source</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-09 08:36:23" itemprop="dateCreated datePublished" datetime="2019-09-09T08:36:23+08:00">2019-09-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-10 20:57:15" itemprop="dateModified" datetime="2019-09-10T20:57:15+08:00">2019-09-10</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>本文用于区分计算机中几个常见的名词</strong></p>
-<hr>
-<p><img src="http://pxlwew7ij.bkt.clouddn.com/heckert_gnu.transp.small.png" alt></p>
-<h2 id="一、GNU-Linux-VS-Linux"><a href="#一、GNU-Linux-VS-Linux" class="headerlink" title="一、GNU/Linux VS Linux"></a>一、GNU/Linux VS Linux</h2><p><a href="https://www.gnu.org/gnu/gnu-linux-faq.html" target="_blank" rel="noopener">关于GNU/Linux常见问答</a></p>
-<h3 id="1-GNU是什么？——-GNU是一个操作系统"><a href="#1-GNU是什么？——-GNU是一个操作系统" class="headerlink" title="1. GNU是什么？—— GNU是一个操作系统"></a>1. GNU是什么？—— <a href="https://www.gnu.org/" target="_blank" rel="noopener">GNU是一个操作系统</a></h3><p>GNU其实是一个<a href="https://www.gnu.org/philosophy/free-sw.html" target="_blank" rel="noopener">自由软件</a>操作系统——它尊重其使用者的自由。GNU操作系统包括GNU软件包（专门由GNU工程发布的程序）和由第三方发布的自由软件。GNU的开发使你能够使用电脑而无需安装可能会侵害你自由的软件。</p>
-<h3 id="2-什么是Linux？"><a href="#2-什么是Linux？" class="headerlink" title="2. 什么是Linux？"></a>2. 什么是Linux？</h3><p>Linux，通常被认为是一套操作系统，实际上它是一系列 <strong><em>Linux 内核</em></strong> 基础上开发的操作系统的总称。日常所见比较多的 Ubuntu、企业常用的 centos 其实是用的 Linux 内核的系统，GNU/Linux也是。</p>
-<h3 id="3-GNU-Linux？"><a href="#3-GNU-Linux？" class="headerlink" title="3. GNU/Linux？"></a>3. GNU/Linux？</h3><p>GNU是一个类Unix操作系统。它是由多个应用程序、系统库、开发工具乃至游戏构成的程序集合。GNU的开发始于1984年1月，称为GNU工程。GNU的许多程序在GNU工程下发布；我们称之为<a href="https://www.gnu.org/software/" target="_blank" rel="noopener">GNU软件包</a>。</p>
-<p>“GNU”这个名字是“GNU’s Not Unix”的递归首字母缩写词。<a href="https://www.gnu.org/pronunciation/pronunciation.html" target="_blank" rel="noopener">“GNU”的发音为g’noo</a><br>，只有一个音节，发音很像“grew”，但需要把其中的r音替换为n音。</p>
-<p>类Unix操作系统中用于资源分配和硬件管理的程序称为“内核”。GNU所用的典型内核是Linux。该组合叫做GNU/Linux操作系统。GNU/Linux为几百万用户所使用，然而许多人错误地称之为<strong>“Linux”</strong>。</p>
-<h2 id="二、Free-VS-Open-Source"><a href="#二、Free-VS-Open-Source" class="headerlink" title="二、Free VS Open Source"></a>二、Free VS Open Source</h2><h3 id="自由软件视频：自由软件的发起者Richard-Stallman的TED演讲。"><a href="#自由软件视频：自由软件的发起者Richard-Stallman的TED演讲。" class="headerlink" title="自由软件视频：自由软件的发起者Richard Stallman的TED演讲。"></a><a href="https://www.fsf.org/blogs/rms/20140407-geneva-tedx-talk-free-software-free-society" target="_blank" rel="noopener">自由软件视频</a>：自由软件的发起者<a href="https://en.wikipedia.org/wiki/Richard_Stallman" target="_blank" rel="noopener">Richard Stallman</a>的TED演讲。</h3><h3 id="两篇文章就能回答这个问题。"><a href="#两篇文章就能回答这个问题。" class="headerlink" title="两篇文章就能回答这个问题。"></a>两篇文章就能回答这个问题。</h3><h4 id="1-为什么“自由软件”好于“开源”"><a href="#1-为什么“自由软件”好于“开源”" class="headerlink" title="1. 为什么“自由软件”好于“开源”"></a>1. <a href="https://www.gnu.org/philosophy/free-software-for-freedom.zh-cn.html" target="_blank" rel="noopener">为什么“自由软件”好于“开源”</a></h4><blockquote>
-<p>虽然自由软件不以自由命名，也能给你同样的自由，但是使用其他的名字会造成重大的不同：不同的词汇<em>传达不同的理念</em>。</p>
-</blockquote>
-<blockquote>
-<p>1998年，自由软件社区有些人开始使用<a href="https://opensource.org/" target="_blank" rel="noopener">“开源软件”</a>来替代<a href="https://www.gnu.org/philosophy/free-sw.html" target="_blank" rel="noopener">“自由软件”</a>来描述他们的所作所为。“开源”一词迅速关联到不同的方法、不同的哲学、不同的价值，甚至是接受何种许可证的不同标准。现在，自由软件运动与开源运动，已经是<a href="https://www.gnu.org/philosophy/free-software-for-freedom.zh-cn.html#relationship" target="_blank" rel="noopener">各自独立的运动</a>，它们有不同的观点和目标，虽然两者还能一起从事实际的项目。</p>
-</blockquote>
-<blockquote>
-<p>两个运动的根本差别在于它们的价值、它们看待世界的方法。就开源运动而言，软件是否应该开源是一个实际的问题，而不是道德诉求。正如有人指出，“开源是一种开发的方法；自由软件是一场社会运动。”对开源运动来说，非自由软件不是最佳答案。对自由软件运动来说，非自由软件是社会问题，而自由软件是正解。</p>
-</blockquote>
-<h4 id="2-为什么开源错失了自由软件的重点"><a href="#2-为什么开源错失了自由软件的重点" class="headerlink" title="2. 为什么开源错失了自由软件的重点"></a>2. <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html" target="_blank" rel="noopener">为什么开源错失了自由软件的重点</a></h4><blockquote>
-<p>“自由软件”和“开源”基本上指的是同一范围的程序。然而，出于不同的价值观，它们对这些程序的看法大相径庭。自由软件运动为用户的计算自由而战斗；这是一个为自由和公正而战的运动。相反，开源理念重视的是实用优势而不是原则利害。我们因此不赞同开源运动，也不使用开源这个词。</p>
-</blockquote>
-<p><strong>自由软件意味着使用者有运行、复制、发布、研究、修改和改进该软件的自由。</strong><br>更精确地说，自由软件赋予软件使用者四项基本自由：</p>
-<ul>
-<li>不论目的为何，有运行该软件的自由（自由之零）。</li>
-<li>有研究该软件如何工作以及按需改写该软件的自由（自由之一）。取得该软件源代码为达成此目的之前提。</li>
-<li>有重新发布拷贝的自由，这样你可以借此来敦亲睦邻（自由之二）。</li>
-<li>有向公众发布改进版软件的自由（自由之三），这样整个社群都可因此受惠。取得该软件源码为达成此目的之前提。</li>
-</ul>
-<h2 id="三、黑客和骇客"><a href="#三、黑客和骇客" class="headerlink" title="三、黑客和骇客"></a>三、黑客和骇客</h2><p><strong>作为计算机人士，一些基本概念还是要懂的！</strong>所以额外补充一组词：黑客 VS 骇客</p>
-<h4 id="1-黑客"><a href="#1-黑客" class="headerlink" title="1. 黑客"></a>1. 黑客</h4><blockquote>
-<p>他们其实不是江洋大盗，而是真正的侠客。他们专门破解一些软件给普通人免费使用，他们道德高尚，是一群真正热爱计算机、热爱编程的人，他们反对收费软件。Richard Stallman就是黑客，虽然他是美国工程院院士，但是每天都受到监督，因为美国商业人士总是告他。</p>
-</blockquote>
-<h4 id="2-骇客"><a href="#2-骇客" class="headerlink" title="2. 骇客"></a>2. 骇客</h4><blockquote>
-<p>他们才是真正的江洋大盗，是以盗取别人信息，破坏网络安全，为此赚取利益的一些人。</p>
-</blockquote>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-  </div>
-
-  
 
 
           </div>
@@ -504,6 +423,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -516,6 +440,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么是再版？"><span class="nav-number">1.</span> <span class="nav-text">为什么是再版？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、二叉堆"><span class="nav-number">2.</span> <span class="nav-text">1、二叉堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、一个例子"><span class="nav-number">3.</span> <span class="nav-text">2、一个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-生成完全二叉树："><span class="nav-number">3.1.</span> <span class="nav-text">2.1 生成完全二叉树：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、调整为小根堆"><span class="nav-number">3.2.</span> <span class="nav-text">2.2、调整为小根堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-向上调整"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 向上调整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-向下调整"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. 向下调整</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-代码"><span class="nav-number">4.</span> <span class="nav-text">2.3 代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-number">5.</span> <span class="nav-text">3.总结</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
