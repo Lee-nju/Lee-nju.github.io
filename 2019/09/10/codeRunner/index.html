@@ -71,7 +71,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190102102326892.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190102103009844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190102103115968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-09-10T15:18:28.481Z">
+<meta property="og:updated_time" content="2019-09-10T15:24:40.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把CodeRunner3编译latex默认的pdflatex改为xelatex">
 <meta name="twitter:description" content="问题 首先，这是关于mac的一个小编程软件CodeRunner3的一个故事，如果没有装这个软件，自然也没这个问题。 其次，这是想用CodeRunner简单写一点latex，然而由不能编译运行中文而产生的问题。 再次，既然写了，就必须推荐一下这个CodeRunner软件（ps：只支持mac用户，没有Windows版的~）我装的是CodeRunner3，前天用的还是CodeRunner2，觉得版本高一">
@@ -277,7 +277,7 @@
                 
               
 
-              <time title="Created: 2019-09-10 21:59:44 / Modified: 23:18:28" itemprop="dateCreated datePublished" datetime="2019-09-10T21:59:44+08:00">2019-09-10</time>
+              <time title="Created: 2019-09-10 21:59:44 / Modified: 23:24:40" itemprop="dateCreated datePublished" datetime="2019-09-10T21:59:44+08:00">2019-09-10</time>
             </span>
           
             
@@ -296,22 +296,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr><ul>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
 <li>首先，这是关于mac的一个小编程软件CodeRunner3的一个故事，如果没有装这个软件，自然也没这个问题。</li>
 <li>其次，这是想用CodeRunner简单写一点latex，然而由不能编译运行中文而产生的问题。</li>
 <li>再次，既然写了，就必须推荐一下这个CodeRunner软件（ps：只支持mac用户，没有Windows版的~）我装的是CodeRunner3，前天用的还是CodeRunner2，觉得版本高一点可能好用些吧！（其实差不多，好像是多添加了几门支持的编程语言）</li>
 </ul><a id="more"></a>
-
 <p><strong>1. 主界面</strong><br><img src="https://img-blog.csdnimg.cn/20190102000607361.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="主界面"><br><strong>2. 支持语言</strong><br><img src="https://img-blog.csdnimg.cn/20190101234949969.jpg" alt="支持语言大概20多种"><br>其支持的语言大概有20多种，这软件有什么好处呢？学生党应该都知道，vs太麻烦，敲几行都要先创工程，atom、sublime、vs code这些代码编辑器确实挺好用，但没有集成编译的环境，还要去teminal编译运行。不说其他的，每次还要先进入文件夹，再编译啥的。因为我常用c++，mac下的Xcode确实不错，但也是一样，每次的创工程还是感觉不太方便。以上纯属个人牢骚，大佬可跳过..<br>bling..一个偶然的机会下载到了CodeRunner2，我觉得找到真爱了，对于学生的我，正好需要搞一搞各种语言，这软件不仅是一个简单的支持多种语言的IDE，各种语言都支持代码高亮、自动补全，包括一些常用编程用的一些快捷操作，代码缩进，复制或者删除一行等等吧。心动的可以下一个，破解版不难找的。</p>
-<h2 id="CodeRunner3编译LaTex"><a href="#CodeRunner3编译LaTex" class="headerlink" title="CodeRunner3编译LaTex"></a>CodeRunner3编译LaTex</h2><hr>
-<p>交作业或者写论文也常用latex，但我们常常需要让latex可以识别中文，这也就涉及到了xelatex和{ctex}中文包了，但一开始CodeRunner默认编译是用的pdflatex，是不能编译中文的。</p>
+<h2 id="CodeRunner3编译LaTex"><a href="#CodeRunner3编译LaTex" class="headerlink" title="CodeRunner3编译LaTex"></a>CodeRunner3编译LaTex</h2><p>交作业或者写论文也常用latex，但我们常常需要让latex可以识别中文，这也就涉及到了xelatex和{ctex}中文包了，但一开始CodeRunner默认编译是用的pdflatex，是不能编译中文的。</p>
 <p><strong>插个话，</strong><br>其实我也下载了mac版的<em>texstudio</em>，也挺好用的，只要perferences-&gt;构建-&gt;默认编译器-&gt;XeLaTex，点确定就可以编译运行中文了。</p>
 <p>那有了texstudio还写这篇博文干嘛！不好意思，额..我有点强迫症！CodeRunner明明支持latex，那为啥就不能编译运行呢？于是我开始在网上搜类似的内容，于是我开始搜<span style="background-color: yellow">怎么把codeRunner编译latex改成xelatex</span>，哎~搜不到，进入正题！</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><hr>
-<p>点CodeRunner的preferences-&gt;languages-&gt;LaTex<br><img src="https://img-blog.csdnimg.cn/20190102012427460.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Edit Script，出现下面的编译配置文件：<br><img src="https://img-blog.csdnimg.cn/20190102094525272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果你对latex编译敏感的话，你会发现第25行的output是用pdflatex编译输出的，如果你运行不了中文的，编译应该会出错。<br><img src="https://img-blog.csdnimg.cn/20190102095038336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>照理，大家应该都会复制黄框里面的内容去网上找解决方案，不过应该找不到，CodeRunner用的人好像不多的样子，用CodeRunner来编译latex人更不多，Google上找到一张用CodeRunner写latex的一张图，但是没写到和我这样的情况。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>点CodeRunner的preferences-&gt;languages-&gt;LaTex<br><img src="https://img-blog.csdnimg.cn/20190102012427460.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击Edit Script，出现下面的编译配置文件：<br><img src="https://img-blog.csdnimg.cn/20190102094525272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果你对latex编译敏感的话，你会发现第25行的output是用pdflatex编译输出的，如果你运行不了中文的，编译应该会出错。<br><img src="https://img-blog.csdnimg.cn/20190102095038336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>照理，大家应该都会复制黄框里面的内容去网上找解决方案，不过应该找不到，CodeRunner用的人好像不多的样子，用CodeRunner来编译latex人更不多，Google上找到一张用CodeRunner写latex的一张图，但是没写到和我这样的情况。</p>
 <p>==话不多说，接下来才是重点！！==</p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><hr>
-<p>我的想法是编译文件应该都在一起，那我应该找到pdflatex放在哪？看看里面还有其他什么文件，不就知道还存在其他什么编译选项了么！！</p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>我的想法是编译文件应该都在一起，那我应该找到pdflatex放在哪？看看里面还有其他什么文件，不就知道还存在其他什么编译选项了么！！</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ locate pdflatex</span><br></pre></td></tr></table></figure>
 
 <p>在teminal中定位pdflatex文件。结果如下：<br><img src="https://img-blog.csdnimg.cn/20190102101535768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE2MDIxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们看到红色框里面的内容，我觉得这应该就是编译的格式文件，但是我要找xelatex，于是我进入pdflatex.fmt的上两层目录，ls过后发现有一个xetex。注意！这可不是要改的内容。</p>
