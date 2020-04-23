@@ -64,12 +64,12 @@
 <meta property="og:site_name" content="Lee">
 <meta property="og:description" content="问题某天，小李突发奇想，想获取一个qq群里所有人的qq号「反正有用」。目前的办法是点开每个人的个人信息，慢慢复制qq号。好在这个群比较小，只有接近60人，一个一个复制是可操作的，但是小李的逼格不允许他这么做。在网上找了一番解决办法，发现qq群官网好像可以直接看每个人的qq，试着能不能直接复制，是的，可以的话就没有这篇博客了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pxlwew7ij.bkt.clouddn.com/qq.png">
-<meta property="og:updated_time" content="2019-09-18T07:41:31.638Z">
+<meta property="og:image" content="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png">
+<meta property="og:updated_time" content="2020-04-23T15:47:14.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态爬虫 selenium 获取QQ号">
 <meta name="twitter:description" content="问题某天，小李突发奇想，想获取一个qq群里所有人的qq号「反正有用」。目前的办法是点开每个人的个人信息，慢慢复制qq号。好在这个群比较小，只有接近60人，一个一个复制是可操作的，但是小李的逼格不允许他这么做。在网上找了一番解决办法，发现qq群官网好像可以直接看每个人的qq，试着能不能直接复制，是的，可以的话就没有这篇博客了。">
-<meta name="twitter:image" content="http://pxlwew7ij.bkt.clouddn.com/qq.png">
+<meta name="twitter:image" content="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png">
   <link rel="canonical" href="http://yoursite.com/2019/09/17/selenium-get-qq-num/">
 
 
@@ -303,7 +303,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-18 15:41:31" itemprop="dateModified" datetime="2019-09-18T15:41:31+08:00">2019-09-18</time>
+                <time title="修改时间：2020-04-23 23:47:14" itemprop="dateModified" datetime="2020-04-23T23:47:14+08:00">2020-04-23</time>
               </span>
             
           
@@ -405,10 +405,10 @@
 </blockquote>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="comment"># 参数是Chromedrive的路径</span></span><br><span class="line">driver = webdriver.Chrome(<span class="string">"/Users/ligang/Public/chromedriver"</span>)</span><br><span class="line"><span class="comment"># 打开QQ群官网</span></span><br><span class="line">driver.get(<span class="string">"https://qun.qq.com/"</span>)</span><br><span class="line"><span class="comment"># 点一下登录</span></span><br><span class="line">driver.find_element_by_class_name(<span class="string">"user-info"</span>).click()</span><br><span class="line"><span class="comment"># 等待5毫秒，让登录页面显示出来</span></span><br><span class="line">driver.implicitly_wait(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到iframe</span></span><br><span class="line">driver.switch_to_frame(<span class="string">"login_frame"</span>)</span><br><span class="line"><span class="comment"># 点击图片 快速登录</span></span><br><span class="line">driver.find_element_by_id(<span class="string">"img_out_790955169"</span>).click()</span><br><span class="line"><span class="comment"># 点击群管理</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">'//*[@id="headerNav"]/li[4]/a'</span>).click()</span><br><span class="line"><span class="comment"># 点击成员管理</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">"/html/body/div[3]/ul/li[1]/a"</span>).click()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求窗口具柄</span></span><br><span class="line">windows = driver.window_handles</span><br><span class="line"><span class="comment"># 切换到新打开的页面</span></span><br><span class="line">driver.switch_to_window(windows[<span class="number">-1</span>])</span><br><span class="line"><span class="comment"># 点击所要管理的QQ群</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">"/html/body/div[5]/div[2]/div/div[2]/ul[1]/li[4]"</span>).click()</span><br><span class="line"><span class="comment"># 刷新一次，保证页面是正确的</span></span><br><span class="line">driver.refresh()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据标签的规律 tbody[i]的i=2，3，4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]:</span><br><span class="line">    <span class="comment"># 找到相应qq的标签 是一个element列表</span></span><br><span class="line">    QQ = driver.find_elements_by_xpath(<span class="string">'//*[@id="groupMember"]/tbody['</span>+ str(i) +<span class="string">']/tr/td[5]'</span>)</span><br><span class="line">    <span class="comment"># 打印列表中的每个element的内容</span></span><br><span class="line">    <span class="keyword">for</span> qq <span class="keyword">in</span> QQ:</span><br><span class="line">        print(qq.text)</span><br><span class="line">    <span class="comment"># 让浏览器滚动到底部 触发事件 让其显示剩下的QQ号</span></span><br><span class="line">    driver.execute_script(<span class="string">"window.scrollTo(0,document.body.scrollHeight)"</span>)</span><br><span class="line">    <span class="comment"># 沉睡2秒 让浏览器加载下面的内容</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="http://pxlwew7ij.bkt.clouddn.com/qq.png" alt="结果"></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png" alt="结果"></p>
 <h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><blockquote>
 <ol>
-<li>直接输出有点尬，输出可以用excel表；$$</li>
+<li>直接输出有点尬，输出可以用excel表；</li>
 <li>使用selenium应尽量减少操作，中断页面加载，配置testNG实现多线程。</li>
 </ol>
 </blockquote>
@@ -647,7 +647,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-male"></i>
   </span>
