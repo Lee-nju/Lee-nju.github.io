@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="问题某天，小李突发奇想，想获取一个qq群里所有人的qq号「反正有用」。目前的办法是点开每个人的个人信息，慢慢复制qq号。好在这个群比较小，只有接近60人，一个一个复制是可操作的，但是小李的逼格不允许他这么做。在网上找了一番解决办法，发现qq群官网好像可以直接看每个人的qq，试着能不能直接复制，是的，可以的话就没有这篇博客了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态爬虫 selenium 获取QQ号">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/selenium-get-qq-num/index.html">
+<meta property="og:site_name" content="Gang.L">
+<meta property="og:description" content="问题某天，小李突发奇想，想获取一个qq群里所有人的qq号「反正有用」。目前的办法是点开每个人的个人信息，慢慢复制qq号。好在这个群比较小，只有接近60人，一个一个复制是可操作的，但是小李的逼格不允许他这么做。在网上找了一番解决办法，发现qq群官网好像可以直接看每个人的qq，试着能不能直接复制，是的，可以的话就没有这篇博客了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png">
+<meta property="article:published_time" content="2019-09-17T15:38:06.000Z">
+<meta property="article:modified_time" content="2021-02-08T04:02:17.048Z">
+<meta property="article:author" content="二月花">
+<meta property="article:tag" content="selenium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/17/selenium-get-qq-num/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>动态爬虫 selenium 获取QQ号 | Gang.L</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Gang.L" type="application/atom+xml">
+</head>
+
+<!-- 背景特效 -->
+<script type="text/javascript" src="\js\background.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Gang.L</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">当人们发现了镜子，<br>他们开始失去了灵魂！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selenium"><span class="nav-number">2.</span> <span class="nav-text">Selenium</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5qq%E7%BE%A4"><span class="nav-number">3.1.</span> <span class="nav-text">进入qq群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6qq%E5%8F%B7"><span class="nav-number">3.2.</span> <span class="nav-text">复制qq号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B"><span class="nav-number">6.</span> <span class="nav-text">改进</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二月花"
+      src="https://s3.ax1x.com/2020/12/15/rM2caF.jpg">
+  <p class="site-author-name" itemprop="name">二月花</p>
+  <div class="site-description" itemprop="description">世间荒唐客，庙中通明人</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lee-nju" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lee-nju" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/3935091450" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;3935091450" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lig@smail.nju.edu.cn" title="E-Mail → mailto:lig@smail.nju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/Lee-nju" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/selenium-get-qq-num/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://s3.ax1x.com/2020/12/15/rM2caF.jpg">
+      <meta itemprop="name" content="二月花">
+      <meta itemprop="description" content="世间荒唐客，庙中通明人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gang.L">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          动态爬虫 selenium 获取QQ号
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-17 23:38:06" itemprop="dateCreated datePublished" datetime="2019-09-17T23:38:06+08:00">2019-09-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-08 12:02:17" itemprop="dateModified" datetime="2021-02-08T12:02:17+08:00">2021-02-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2019/09/17/selenium-get-qq-num/" class="post-meta-item leancloud_visitors" data-flag-title="动态爬虫 selenium 获取QQ号" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/09/17/selenium-get-qq-num/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/17/selenium-get-qq-num/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>某天，小李突发奇想，想获取一个qq群里所有人的qq号「反正有用」。目前的办法是点开每个人的个人信息，慢慢复制qq号。好在这个群比较小，只有接近60人，一个一个复制是可操作的，但是小李的逼格不允许他这么做。在网上找了一番解决办法，发现<a target="_blank" rel="noopener" href="https://qun.qq.com/">qq群官网</a>好像可以直接看每个人的qq，试着能不能直接复制，是的，可以的话就没有这篇博客了。</p>
+<a id="more"></a>
+<h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><p>selenium是一个python爬虫的库，主要用来爬取动态页面的数据，具体用代码就是模拟人的操作，代码要干什么就能让鼠标干什么（如快速登录、输入账号和密码、点开图片、下载图片等），怎么说呢？快速上手就按网址顺序过一下吧！</p>
+<blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://selenium-python-zh.readthedocs.io/en/latest/index.html">Selenium with Python中文翻译文档</a> </li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhaof/p/6953241.html">python爬虫从入门到放弃之 Selenium库的使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/w_lo__o/article/details/81038497">Selenium with Python 函数讲解</a></li>
+<li><a target="_blank" rel="noopener" href="https://selenium-python.readthedocs.io/">Selenium with Python</a></li>
+</ol>
+</blockquote>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="进入qq群"><a href="#进入qq群" class="headerlink" title="进入qq群"></a>进入qq群</h3><blockquote>
+<ol>
+<li>打开<a target="_blank" rel="noopener" href="https://qun.qq.com/">qq群官网</a></li>
+<li>登上电脑qq</li>
+<li>点击快速登录</li>
+<li>点击群管理</li>
+<li>点击成员管理</li>
+<li>点击相应的群</li>
+</ol>
+</blockquote>
+<h3 id="复制qq号"><a href="#复制qq号" class="headerlink" title="复制qq号"></a>复制qq号</h3><blockquote>
+<ol>
+<li>复制第一页qq号</li>
+<li>鼠标滚动至页底</li>
+<li>复制第二页qq号</li>
+<li>重复2、3，直到结束</li>
+</ol>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="comment"># 参数是Chromedrive的路径</span></span><br><span class="line">driver = webdriver.Chrome(<span class="string">&quot;/Users/ligang/Public/chromedriver&quot;</span>)</span><br><span class="line"><span class="comment"># 打开QQ群官网</span></span><br><span class="line">driver.get(<span class="string">&quot;https://qun.qq.com/&quot;</span>)</span><br><span class="line"><span class="comment"># 点一下登录</span></span><br><span class="line">driver.find_element_by_class_name(<span class="string">&quot;user-info&quot;</span>).click()</span><br><span class="line"><span class="comment"># 等待5毫秒，让登录页面显示出来</span></span><br><span class="line">driver.implicitly_wait(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到iframe</span></span><br><span class="line">driver.switch_to_frame(<span class="string">&quot;login_frame&quot;</span>)</span><br><span class="line"><span class="comment"># 点击图片 快速登录</span></span><br><span class="line">driver.find_element_by_id(<span class="string">&quot;img_out_790955169&quot;</span>).click()</span><br><span class="line"><span class="comment"># 点击群管理</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">&#x27;//*[@id=&quot;headerNav&quot;]/li[4]/a&#x27;</span>).click()</span><br><span class="line"><span class="comment"># 点击成员管理</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">&quot;/html/body/div[3]/ul/li[1]/a&quot;</span>).click()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求窗口具柄</span></span><br><span class="line">windows = driver.window_handles</span><br><span class="line"><span class="comment"># 切换到新打开的页面</span></span><br><span class="line">driver.switch_to_window(windows[-<span class="number">1</span>])</span><br><span class="line"><span class="comment"># 点击所要管理的QQ群</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">&quot;/html/body/div[5]/div[2]/div/div[2]/ul[1]/li[4]&quot;</span>).click()</span><br><span class="line"><span class="comment"># 刷新一次，保证页面是正确的</span></span><br><span class="line">driver.refresh()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据标签的规律 tbody[i]的i=2，3，4</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]:</span><br><span class="line">    <span class="comment"># 找到相应qq的标签 是一个element列表</span></span><br><span class="line">    QQ = driver.find_elements_by_xpath(<span class="string">&#x27;//*[@id=&quot;groupMember&quot;]/tbody[&#x27;</span>+ <span class="built_in">str</span>(i) +<span class="string">&#x27;]/tr/td[5]&#x27;</span>)</span><br><span class="line">    <span class="comment"># 打印列表中的每个element的内容</span></span><br><span class="line">    <span class="keyword">for</span> qq <span class="keyword">in</span> QQ:</span><br><span class="line">        print(qq.text)</span><br><span class="line">    <span class="comment"># 让浏览器滚动到底部 触发事件 让其显示剩下的QQ号</span></span><br><span class="line">    driver.execute_script(<span class="string">&quot;window.scrollTo(0,document.body.scrollHeight)&quot;</span>)</span><br><span class="line">    <span class="comment"># 沉睡2秒 让浏览器加载下面的内容</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="https://i.loli.net/2020/04/23/fT8S7qDKjhIMQ6R.png" alt="结果"></p>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><blockquote>
+<ol>
+<li>直接输出有点尬，输出可以用excel表；</li>
+<li>使用selenium应尽量减少操作，中断页面加载，配置testNG实现多线程。</li>
+</ol>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+      
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>动态爬虫 selenium 获取QQ号</a></p>
+  <p><span>文章作者:</span>二月花</a></p>
+  <p><span>发布时间:</span>2019年09月17日 - 23:38:06</p>
+  <p><span>原始链接:</span><a href="/2019/09/17/selenium-get-qq-num/" title="动态爬虫 selenium 获取QQ号">http://yoursite.com/2019/09/17/selenium-get-qq-num/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2019/09/17/selenium-get-qq-num/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fab fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/selenium/" rel="tag"><i class="fa fa-tag"></i> selenium</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/10/codeRunner/" rel="prev" title="把CodeRunner3编译latex默认的pdflatex改为xelatex">
+                  <i class="fa fa-chevron-left"></i> 把CodeRunner3编译latex默认的pdflatex改为xelatex
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/08/crawling/" rel="next" title="爬虫总结">
+                  爬虫总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"><i class="fa fa-user"></i> 二月花</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">20k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">18 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: "/2019/09/17/selenium-get-qq-num/",
+    }, {"enable":true,"appId":"nKWNu3HTeg3xhfXjhCsa0P40-gzGzoHsz","appKey":"kEEDkcTjE2AXBrJX66HxkX56","placeholder":"ヾﾉ≧∀≦)o come on ！！！","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":true,"comment_count":true,"recordIP":true,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
